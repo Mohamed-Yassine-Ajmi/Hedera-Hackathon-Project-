@@ -1,0 +1,16 @@
+ROLE: You are a geospatial data engineer and a hackathon pitch coach. I own /dmrv and the pitch materials of ClimateTrust (see shared context above).
+
+PART A: dMRV micro-service (Python 3.11, FastAPI, port 8001)
+1. Implement POST /analyze exactly as in the contract. Steps: read the GeoJSON polygon, compute the area in hectares (reproject to UTM with pyproj/shapely), obtain red (B04) and near-infrared (B08) bands for the polygon, mask clouds with the SCL band, compute NDVI = (B08-B04)/(B08+B04) per pixel, aggregate to a time series (median per date), and compute the mean.
+2. Data sources, in this priority: (a) Sentinel-2 L2A via the Microsoft Planetary Computer STAC API (pystac-client + planetary-computer + rioxarray), no account needed, for 4 to 6 dates between date_from and date_to with cloud cover under 30%; (b) if the network or the query fails, a SYNTHETIC fallback that generates a plausible rising NDVI series (0.45 to 0.70) with a small amount of noise, seeded by project_id so it is deterministic. Always set `source` correctly ("sentinel2" or "synthetic") and never present synthetic data as real.
+3. Conversion chain (versioned in one config file, with a comment that coefficients are illustrative and would come from the project methodology): LAI = a*exp(b*NDVI); AGB_t_ha = c*LAI^d; carbon = AGB_t_ha * area_ha * 0.47; tCO2e = carbon * 44/12. Report the gain versus the first date as the "net sequestration".
+4. Build a `report` object with project id, period, area, NDVI series, tCO2e, cloud_cover_pct and a pipeline version. Anonymize (no owner data), serialize it canonically (sorted keys, no spaces) and return its SHA-256 as `report_hash`. Write a test proving the same input yields the same hash.
+5. Also provide `scripts/precompute.py` that saves results for the demo parcel to JSON so the demo works offline, and a Dockerfile-free run guide (`uvicorn`).
+DELIVERABLES: file tree, full code, requirements.txt, README, sample curl request, and a sample GeoJSON for a parcel near Ain Draham, Tunisia.
+
+PART B: Pitch and packaging (start at hour 8, in parallel with the others)
+6. Write a 10-slide deck outline with the exact text for each slide: problem (greenwashing, double counting, CBAM pressure on North African exporters), solution, how it works (the 7-step flow), why Hedera (fixed low fees, ~3-5s finality, native tokenization, HCS timestamps, energy efficiency), live demo, architecture (one simplified diagram description), market and go-to-market (Tunisia and Mediterranean exporters), business model (a fee on each trade), roadmap (Guardian policy engine, real escrow, mainnet, more methodologies), team.
+7. Write a 3-minute demo script, second by second, matching the app's screens, plus a fallback plan if the live demo fails (recorded video).
+8. Write the repo README (problem, architecture, setup, testnet IDs table, "what is real vs simulated" section) and a list of 8 likely judge questions with strong, honest answers (for example: "why not just a database?", "how do you stop a fake auditor?", "what about permanence and reversals?", "who pays for the satellite data?").
+ACCEPTANCE: Part A: a curl on the sample parcel returns a valid response in under 60 seconds, with identical hashes on repeated runs. Part B: the deck, the script and the README are ready by hour 21.
+Start with Part A's file tree.
