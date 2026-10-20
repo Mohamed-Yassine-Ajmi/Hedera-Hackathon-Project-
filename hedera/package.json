@@ -1,0 +1,34 @@
+{
+  "name": "hedera-layer",
+  "version": "1.0.0",
+  "description": "Hedera Hashgraph blockchain integration module",
+  "main": "dist/hedera/src/index.js",
+  "types": "dist/hedera/src/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test hedera/tests/index.test.ts",
+    "setup": "tsx hedera/scripts/setup.ts",
+    "demo": "tsx hedera/scripts/demo.ts"
+  },
+  "keywords": [
+    "hedera",
+    "hashgraph",
+    "hcs",
+    "hfs",
+    "hts",
+    "did",
+    "verifiable-credentials"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hashgraph/sdk": "^2.81.0",
+    "dotenv": "^18.0.8"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
