@@ -39,7 +39,8 @@ venv/
 .DS_Store
 Thumbs.db
 
-# Prompts (keep unpushed)
+# Prompts and context (keep unpushed)
 *prompt*.md
 prompt.md
 **/prompt.md
+context.md
