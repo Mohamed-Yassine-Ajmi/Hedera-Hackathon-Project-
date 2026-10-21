@@ -1,0 +1,22 @@
+{
+  "type": "Feature",
+  "properties": {
+    "name": "Ain Draham Cork Oak & Agroforestry Parcel",
+    "location": "Kroumirie Mountains, Jendouba Governorate, Tunisia",
+    "ecosystem": "Mediterranean Cork Oak (Quercus suber) & Watershed Protection",
+    "standard": "VM0007 / VM0042",
+    "project_id": "proj_ain_draham_demo"
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [8.6650, 36.7620],
+        [8.6920, 36.7620],
+        [8.6920, 36.7810],
+        [8.6650, 36.7810],
+        [8.6650, 36.7620]
+      ]
+    ]
+  }
+}

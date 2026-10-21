@@ -7,9 +7,9 @@
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test hedera/tests/index.test.ts",
-    "setup": "tsx hedera/scripts/setup.ts",
-    "demo": "tsx hedera/scripts/demo.ts"
+    "test": "tsx --test tests/index.test.ts",
+    "setup": "tsx scripts/setup.ts",
+    "demo": "tsx scripts/demo.ts"
   },
   "keywords": [
     "hedera",

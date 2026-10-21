@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-brand: #10b981;
+    --color-brand-dark: #059669;
+    --glass-bg: rgba(15, 23, 42, 0.6);
+    --glass-border: rgba(148, 163, 184, 0.1);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #334155 transparent;
+  }
+
+  body {
+    background: linear-gradient(135deg, #0f172a 0%, #042f2e 50%, #0f172a 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-gray-900/60 backdrop-blur-md border border-gray-700/50 rounded-2xl shadow-lg;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:border-brand-500/30 hover:shadow-glow;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-brand-500 to-teal-500 text-white font-semibold
+           px-6 py-2.5 rounded-xl shadow-lg shadow-brand-500/25
+           hover:shadow-brand-500/40 hover:from-brand-400 hover:to-teal-400
+           active:scale-[0.98] transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-800 text-gray-200 font-medium
+           px-5 py-2.5 rounded-xl border border-gray-700
+           hover:bg-gray-700 hover:border-gray-600
+           active:scale-[0.98] transition-all duration-200;
+  }
+
+  .btn-danger {
+    @apply bg-red-600/20 text-red-400 font-medium
+           px-5 py-2.5 rounded-xl border border-red-500/30
+           hover:bg-red-600/30 hover:border-red-500/50
+           active:scale-[0.98] transition-all duration-200;
+  }
+
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider;
+  }
+
+  .status-draft {
+    @apply status-badge bg-gray-700/50 text-gray-400 border border-gray-600/50;
+  }
+
+  .status-analyzed {
+    @apply status-badge bg-amber-500/15 text-amber-400 border border-amber-500/30;
+  }
+
+  .status-listed {
+    @apply status-badge bg-brand-500/15 text-brand-400 border border-brand-500/30;
+  }
+
+  .status-locked {
+    @apply status-badge bg-blue-500/15 text-blue-400 border border-blue-500/30;
+  }
+
+  .status-retired {
+    @apply status-badge bg-purple-500/15 text-purple-400 border border-purple-500/30;
+  }
+
+  .input-field {
+    @apply w-full bg-gray-800/80 border border-gray-700 rounded-xl px-4 py-2.5
+           text-gray-100 placeholder-gray-500
+           focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50
+           transition-all duration-200;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-gray-400 mb-1.5;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold text-white mb-1;
+  }
+
+  .section-subtitle {
+    @apply text-gray-400 text-sm;
+  }
+
+  .hedera-badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-md
+           bg-brand-500/10 text-brand-400 text-xs font-medium border border-brand-500/20;
+  }
+}
+
+/* Leaflet overrides for dark theme */
+.leaflet-container {
+  background: #1e293b !important;
+  border-radius: 1rem;
+}
+
+.leaflet-tile-pane {
+  filter: brightness(0.8) saturate(0.9);
+}
+
+.leaflet-control-zoom a {
+  background: #1e293b !important;
+  color: #94a3b8 !important;
+  border-color: #334155 !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+.leaflet-draw-toolbar a {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+}
+
+.leaflet-popup-tip {
+  background: #1e293b !important;
+}
+
+/* Stepper line animation */
+@keyframes stepperPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+}
+
+.stepper-active {
+  animation: stepperPulse 2s ease-in-out infinite;
+}

@@ -1,0 +1,37 @@
+{
+  "project_id": "proj_ain_draham_demo",
+  "area_ha": 507.85,
+  "ndvi_mean": 0.6193,
+  "ndvi_series": [
+    {
+      "date": "2026-03-08",
+      "value": 0.533
+    },
+    {
+      "date": "2026-03-18",
+      "value": 0.567
+    },
+    {
+      "date": "2026-04-07",
+      "value": 0.604
+    },
+    {
+      "date": "2026-04-17",
+      "value": 0.641
+    },
+    {
+      "date": "2026-04-19",
+      "value": 0.674
+    },
+    {
+      "date": "2026-04-29",
+      "value": 0.697
+    }
+  ],
+  "biomass_t_ha": 74.8,
+  "tco2e": 30608.37,
+  "report": "{\"area_ha\":507.85,\"biomass_t_ha\":74.8,\"cloud_cover_pct\":2.8,\"ndvi_mean\":0.6193,\"ndvi_series\":[{\"date\":\"2026-03-08\",\"value\":0.533},{\"date\":\"2026-03-18\",\"value\":0.567},{\"date\":\"2026-04-07\",\"value\":0.604},{\"date\":\"2026-04-17\",\"value\":0.641},{\"date\":\"2026-04-19\",\"value\":0.674},{\"date\":\"2026-04-29\",\"value\":0.697}],\"period\":{\"date_from\":\"2026-03-01\",\"date_to\":\"2026-09-15\"},\"pipeline_version\":\"1.0.0-mediterranean\",\"project_id\":\"proj_ain_draham_demo\",\"source\":\"sentinel2\",\"tco2e\":30608.37}",
+  "report_hash": "0x55fa93e5e837d9293af77fc45923b5218b6e63b254652af1c196f770ab63b0dc",
+  "cloud_cover_pct": 2.8,
+  "source": "sentinel2"
+}

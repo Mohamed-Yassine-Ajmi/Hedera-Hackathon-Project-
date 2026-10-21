@@ -1,0 +1,32 @@
+{
+  "name": "hedera",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mohamed-Yassine-Ajmi/Hedera-Hackathon-Project-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mohamed-Yassine-Ajmi/Hedera-Hackathon-Project-/issues"
+  },
+  "homepage": "https://github.com/Mohamed-Yassine-Ajmi/Hedera-Hackathon-Project-#readme",
+  "description": "",
+  "dependencies": {
+    "@hashgraph/sdk": "^2.81.0",
+    "dotenv": "^18.0.8"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

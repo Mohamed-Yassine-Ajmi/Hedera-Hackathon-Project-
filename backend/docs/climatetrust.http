@@ -1,0 +1,107 @@
+### ClimateTrust REST API Tests
+@baseUrl = http://localhost:8000/api
+
+### 1. Health Check
+GET {{baseUrl}}/health
+
+### 2. Catalog
+GET {{baseUrl}}/catalog
+
+### 3. Footprint Calculator
+POST {{baseUrl}}/footprint
+Content-Type: application/json
+
+{
+  "electricityKwh": 1200,
+  "fuelLiters": 450,
+  "freightTkm": 2500
+}
+
+### 4. Register a New Project Parcel
+# @name createProject
+POST {{baseUrl}}/projects
+Content-Type: application/json
+
+{
+  "name": "Souss Valley Argan Regeneration",
+  "owner": "Cooperative Feminine Argane",
+  "methodology": "VM0042 - Improved Agricultural Land Management",
+  "geojson": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [-9.50, 30.30],
+        [-9.35, 30.30],
+        [-9.35, 30.45],
+        [-9.50, 30.45],
+        [-9.50, 30.30]
+      ]
+    ]
+  },
+  "pddHash": "0xabcdef9876543210abcdef9876543210abcdef9876543210abcdef9876543210",
+  "pricePerTonneUsd": 30.0
+}
+
+### 5. Overlap Test (Should Return 409 Conflict)
+POST {{baseUrl}}/projects
+Content-Type: application/json
+
+{
+  "name": "Overlapping Duplicate Parcel",
+  "owner": "Malicious Actor",
+  "methodology": "VM0042",
+  "geojson": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [-9.50, 30.30],
+        [-9.35, 30.30],
+        [-9.35, 30.45],
+        [-9.50, 30.45],
+        [-9.50, 30.30]
+      ]
+    ]
+  },
+  "pddHash": "0x1111222233334444"
+}
+
+### 6. Run dMRV Satellite Analysis
+# Replace :id with project ID returned from createProject
+POST {{baseUrl}}/projects/proj_kroumirie_draft/analyze
+
+### 7. Auditor Certification & Minting (VC + HTS Token)
+POST {{baseUrl}}/projects/proj_kroumirie_draft/audit
+Content-Type: application/json
+
+{
+  "auditorId": "auditor_demo",
+  "approve": true,
+  "netTonnage": 40,
+  "bufferPct": 15.0,
+  "notes": "Verified biomass density against Sentinel-2 L2A optical imagery."
+}
+
+### 8. Place Order (Lock Serials for 15 Minutes)
+# @name createOrder
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "buyerId": "buyer_demo",
+  "projectId": "proj_atlas_cedar",
+  "quantity": 3
+}
+
+### 9. Settle Payment & Retire Serials (HTS Token Wipe)
+# Replace with orderId from step 8
+POST {{baseUrl}}/orders/ord_test123/pay
+
+### 10. Download Retirement PDF Certificate
+# Replace with orderId
+GET {{baseUrl}}/orders/ord_test123/certificate
+
+### 11. Public Explorer - Project Timeline
+GET {{baseUrl}}/explorer/project/proj_atlas_cedar
+
+### 12. Public Explorer - Serial Status (Wipe Verification)
+GET {{baseUrl}}/explorer/serial/0.0.300101/1
